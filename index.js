@@ -14,7 +14,15 @@ app.use(express.static  ( path.join ( __dirname , 'public'))    );
 const server = app.listen( app.get('port') , ()=>{
     console.log('server listen on port :: ' ,  app.get('port'));
 })
-const io = SocketIO(server , { cors: { origin: "*" } })
+const io = SocketIO(server,{
+	cors: {
+    		origin: "http://localhost",
+    		methods: ["GET", "POST"],
+    		credentials: true,
+    		transports: ['websocket', 'polling'],
+  	},
+    	allowEIO3: true
+	})
 
 // websocket
 
